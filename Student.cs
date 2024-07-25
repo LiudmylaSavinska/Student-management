@@ -11,6 +11,7 @@ public class Student
     {
         Name = name;
         Age = age;
+        Subjects = new Dictionary<string, int>();
     }
 
     public void ChangeClass(Class classToJoin)

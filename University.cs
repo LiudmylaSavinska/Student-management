@@ -138,6 +138,19 @@ public class University
         Console.WriteLine($"Global average mark is: {result}");
     }
 
+    public void GetStudentDetails()
+    {
+        Console.WriteLine("Please enter student name.");
+        var name = Console.ReadLine();
+
+        var student = GetStudentByName(name);
+
+        if (student != null)
+        {
+            Console.WriteLine(student.GetStudentDetails());
+        }
+    }
+
     private Student? GetStudentByName(string name)
     {
         foreach (var searchableStudent in Students)

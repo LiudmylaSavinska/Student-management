@@ -6,7 +6,8 @@ while (!exit)
 {
     Console.WriteLine("Please select an option: " +
                       "\n1. Add Student, \n2. Remove Student, \n3. Add Student To Class" +
-                      "\n4. Manage Student Marks, \n5. Get Class Details, \n6. Get Global Average Mark");
+                      "\n4. Manage Student Marks, \n5. Get Class Details, \n6. Get Global Average Mark" +
+                      "\n7. Get Student Details");
     
     var userInput = Console.ReadLine();
     
@@ -36,7 +37,11 @@ while (!exit)
             university.GetGlobalAverageMark();
             break;
         
-        default: Console.WriteLine("Please select the write option");
+        case "7":
+            university.GetStudentDetails();
+            break;
+        
+        default: Console.WriteLine("Please select correct option");
             break;
     }
 }

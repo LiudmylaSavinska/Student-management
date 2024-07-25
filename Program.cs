@@ -1,116 +1,42 @@
-﻿class Subject
+﻿using Student_management;
+
+var university = new University();
+var exit = false;
+while (!exit)
 {
-    public string Name { get; set; }
-
-    public Subject(string name)
+    Console.WriteLine("Please select an option: " +
+                      "\n1. Add Student, \n2. Remove Student, \n3. Add Student To Class" +
+                      "\n4. Manage Student Marks, \n5. Get Class Details, \n6. Get Global Average Mark");
+    
+    var userInput = Console.ReadLine();
+    
+    switch (userInput)
     {
-        Name = name;
-    }
-}
-
-class Class
-{
-    public string Name { get; set; }
-
-    public Class(string name)
-    {
-        Name = name;
-    }
-
-    public Class()
-    {
-    }
-}
-
-class Student
-{
-    public string Name { get; set; }
-    public int Age { get; set; }
-    public Class Class { get; set; }
-    public double AverageMark { get; set; }
-    public Dictionary<Subject, int> Subjects { get; set; }
-
-    public Student(string name, int age)
-    {
-        Name = name;
-        Age = age;
-    }
-
-    public Student()
-    {
-    }
-}
-
-class University
-{
-    public List<Student> Students { get; set; }
-    public List<Class> Classes { get; set; }
-    public List<Subject> Subjects { get; set; }
-
-    public University()
-    {
-        Classes = new List<Class>();
-        Classes.Add(new Class("A"));
-        Classes.Add(new Class("B"));
-        Classes.Add(new Class("C"));
-
-        Subjects = new List<Subject>();
-        Subjects.Add(new Subject("English"));
-        Subjects.Add(new Subject("Math"));
-        Subjects.Add(new Subject("Biology"));
-        Subjects.Add(new Subject("Geography"));
-
-        Students = new List<Student>();
-    }
-
-    public void AddStudent(string name, int age)
-    {
-        var student = new Student(name, age);
-
-        foreach (var subject in Subjects)
-        {
-            student.Subjects.Add(subject, 0);
-        }
+        case "1":
+            university.AddStudent();
+            break;
         
-        Students.Add(student);
-    }
-
-    public void RemoveStudent(string name)
-    {
-        var studentToRemove = new Student();
-
-        foreach (var student in Students)
-        {
-            if (student.Name == name)
-            {
-                studentToRemove = student;
-            }
-        }
-
-        Students.Remove(studentToRemove);
-    }
-
-    public void AddClass(string studentName, string className)
-    {
-        var existingStudent = new Student();
-        var studentClass = new Class();
-
-        foreach (var student in Students)
-        {
-            if (student.Name == studentName)
-            {
-                existingStudent = student;
-            }
-        }
-
-        foreach (var searchableClass in Classes)
-        {
-            if (searchableClass.Name == className)
-            {
-                studentClass = searchableClass;
-            }
-        }
-
-        existingStudent.Class = studentClass;
+        case "2":
+            university.RemoveStudent();
+            break;
+        
+        case "3":
+            university.AddStudentToClass();
+            break;
+        
+        case "4":
+            university.ManageStudentMarks();
+            break;
+        
+        case "5":
+            university.GetClassDetails();
+            break;
+        
+        case "6":
+            university.GetGlobalAverageMark();
+            break;
+        
+        default: Console.WriteLine("Please select the write option");
+            break;
     }
 }
